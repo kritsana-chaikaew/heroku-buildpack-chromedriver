@@ -33,7 +33,7 @@ topic "Finding match driver..."
 VERSIONS=$(curl -s https://chromedriver.storage.googleapis.com/ | grep -oE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}' | sort | uniq)
 for n in $(seq 0 ${#CHROME_VERSION})
 do
-  MATCH_VERSION=$(echo $VERSIONS | grep -om 1 ${CHROME_VERSION::-n} | uniq)
+  MATCH_VERSION=$(echo $VERSIONS | grep -o ${CHROME_VERSION::-n} | uniq)
   if [ -n "$MATCH_VERSION" ]; then
     break
   fi
