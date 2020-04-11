@@ -44,7 +44,6 @@ do
 done
 
 if [ -n "$MATCH_VERSION" ]; then
-  topic "Match version found $MATCH_VERSION"
   VERSION=$MATCH_VERSION
 elif [ -f $ENV_DIR/CHROMEDRIVER_VERSION ]; then
   VERSION=$(cat $ENV_DIR/CHROMEDRIVER_VERSION)
