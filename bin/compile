@@ -25,7 +25,8 @@ ENV_DIR=${3:-}
 BIN_DIR=$BUILD_DIR/.chromedriver/bin
 mkdir -p $BIN_DIR
 
-CHROME_VERSION=$(google-chrome --version | grep -ohiE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}')
+#CHROME_VERSION=$(google-chrome --version | grep -ohiE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}')
+CHROME_VERSION="80.0.3987.163"
 VERSIONS=$(curl -s https://chromedriver.storage.googleapis.com/ | grep -ohiE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}' | sort | uniq)
 indent "Dectect chrome version $CHROME_VERSION"
 indent "Founding Match driver..."
