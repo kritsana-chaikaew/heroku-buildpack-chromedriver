@@ -47,7 +47,7 @@ do
   echo $(echo $VERSIONS | grep -oF "$VER2")
   echo $(echo $VERSIONS | grep -oF "$VER")
   echo $(echo $VERSIONS | grep -oF "${CHROME_VERSION::n}")
-  MATCH_VERSION=$(echo $VERSIONS | grep -oF "${CHROME_VERSION::n}")
+  MATCH_VERSION=$(echo $(echo $VERSIONS | grep -oF "${CHROME_VERSION::n}"))
   topic "MATCH_VERSION: $MATCH_VERSION"
   if [ -n "$MATCH_VERSION" ]; then
     break
