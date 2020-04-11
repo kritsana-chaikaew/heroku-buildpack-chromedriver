@@ -30,7 +30,7 @@ CHROME_VERSION=$(HOME=$BUILD_DIR $CHROME_PATH --version | grep -oE '[0-9]{1,3}(\
 topic "Detect chrome version: $CHROME_VERSION"
 
 topic "Get available versions"
-VERSIONS=$(curl -s 'https://chromedriver.storage.googleapis.com/' | cat | grep -oE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}' | sort | uniq)
+VERSIONS=$(curl -s 'https://chromedriver.storage.googleapis.com/' | grep -oE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}' | sort | uniq)
 
 topic "Finding match driver"
 MATCH_VERSION=""
@@ -38,7 +38,7 @@ for n in $(seq ${#CHROME_VERSION} -1 1)
 do
   VER=${CHROME_VERSION::n}
   topic "ver $VER"
-  MATCH_VERSION=$(echo $VERSIONS | grep -o $VER)
+  MATCH_VERSION=$(grep -o $VER <<< $VERSIONS)
   topic "MATCH_VERSION: $MATCH_VERSION"
   if [ -z "$MATCH_VERSION" ]; then
     topic "Empty"
