@@ -37,7 +37,9 @@ MATCH_VERSION=""
 for n in $(seq ${#CHROME_VERSION} -1 1)
 do
   echo $VERSIONS
-  echo $VERSIONS | grep -o ${CHROME_VERSION::n}
+  echo $(echo "test" | grep -o test)
+  echo $(echo "test" | grep -o test)
+  echo $(echo $VERSIONS | grep -o ${CHROME_VERSION::n} | uniq)
   if [ -z "$MATCH_VERSION" ]; then
     MATCH_VERSION=$(echo $VERSIONS | grep -o ${CHROME_VERSION::n} | uniq)
     topic "Match version $MATCH_VERSION"
