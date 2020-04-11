@@ -36,6 +36,7 @@ topic "Finding match driver..."
 MATCH_VERSION=""
 for n in $(seq ${#CHROME_VERSION} -1 1)
 do
+  topic "debug ${CHROME_VERSION::n}"
   if [ -z "$MATCH_VERSION" ]; then
     MATCH_VERSION=$(echo $VERSIONS | grep -o ${CHROME_VERSION::n} | uniq)
     topic "Match version $MATCH_VERSION"
