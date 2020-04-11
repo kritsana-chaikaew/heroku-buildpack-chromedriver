@@ -35,6 +35,7 @@ VERSIONS=$(curl -s 'https://chromedriver.storage.googleapis.com/' | cat | grep -
 topic "Finding match driver..."
 for n in $(seq ${#CHROME_VERSION} -1 1)
 do
+  topic "iterate: $n"
   MATCH_VERSION=$(echo $VERSIONS | grep -o ${CHROME_VERSION::n} | uniq)
   if [ -n "$MATCH_VERSION" ]; then
     topic "Match version found $MATCH_VERSION"
