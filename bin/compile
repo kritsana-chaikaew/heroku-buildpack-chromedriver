@@ -38,6 +38,7 @@ for n in $(seq 0 ${#CHROME_VERSION})
 do
   m="-$n"
   topic $(echo "m ${m}")
+  topic $(echo "CHROME_VERSION::m ${CHROME_VERSION::m}")
   MATCH_VERSION=$(echo $VERSIONS | grep -o ${CHROME_VERSION::m} | uniq)
   if [ -n "$MATCH_VERSION" ]; then
     break
