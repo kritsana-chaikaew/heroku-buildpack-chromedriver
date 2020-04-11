@@ -36,11 +36,9 @@ topic $VERSIONS
 topic "Finding match driver..."
 for n in $(seq 0 ${#CHROME_VERSION})
 do
-  topic $(echo "n ${n}")
-  topic $(echo "CHROME_VERSION ${CHROME_VERSION}")
-  topic $(echo "CHROME_VERSION:0 ${CHROME_VERSION:0}")
-  topic $(echo "CHROME_VERSION:0:-1 ${CHROME_VERSION:0:-1}")
-  MATCH_VERSION=$(echo $VERSIONS | grep -o ${$CHROME_VERSION::-n} | uniq)
+  m="-$n"
+  topic $(echo "m ${m}")
+  MATCH_VERSION=$(echo $VERSIONS | grep -o ${CHROME_VERSION::m} | uniq)
   if [ -n "$MATCH_VERSION" ]; then
     break
   fi
