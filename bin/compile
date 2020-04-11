@@ -36,7 +36,8 @@ topic "Finding match driver"
 MATCH_VERSION=""
 for n in $(seq ${#CHROME_VERSION} -1 1)
 do
-  MATCH_VERSION=$(echo $VERSIONS | grep -o 42.295 )
+  echo "slice ${CHROME_VERSION::n}"
+  MATCH_VERSION=$(echo $VERSIONS | grep -oF ${CHROME_VERSION::n})
   topic "MATCH_VERSION: $MATCH_VERSION"
   if [ -n "$MATCH_VERSION" ]; then
     break
