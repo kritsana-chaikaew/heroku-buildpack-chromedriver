@@ -26,6 +26,7 @@ BIN_DIR=$BUILD_DIR/.chromedriver/bin
 mkdir -p $BIN_DIR
 
 topic "Get chrome version"
+topic "ls -la $HOME/.apt/usr/bin/"
 CHROME_PATH="$HOME/.apt/usr/bin/google-chrome-stable"
 CHROME_VERSION=$($CHROME_PATH --version | tee - | grep -ohiE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}')
 topic "Get chromedriver versions"
