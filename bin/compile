@@ -26,22 +26,19 @@ BIN_DIR=$BUILD_DIR/.chromedriver/bin
 mkdir -p $BIN_DIR
 
 CHROME_PATH="$BUILD_DIR/.apt/usr/bin/google-chrome"
-CHROME_VERSION=$(HOME=$BUILD_DIR $CHROME_PATH --version | tee - | grep -ohiE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}')
-topic "chrome version: $CHROME_VERSION"
-# topic "Get chromedriver versions"
-# VERSIONS=$(curl -s https://chromedriver.storage.googleapis.com/ | tee - |grep -ohiE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}' | sort | uniq)
-# topic "Dectect chrome version $CHROME_VERSION"
-# topic "Finding match driver..."
+CHROME_VERSION=$(HOME=$BUILD_DIR $CHROME_PATH --version | grep -ohiE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}')
+topic "Detect chrome version: $CHROME_VERSION"
 
-# for n in $(seq 0 ${#CHROME_VERSION})
-# do
-#   MATCH_VERSION=$(grep -om 1 ${CHROME_VERSION::-n} <<< $VERSIONS | uniq)
-#   if [ -n "$MATCH_VERSION" ]; then
-#     break
-#   fi
-# done
+topic "Finding match driver..."
+VERSIONS=$(curl -s https://chromedriver.storage.googleapis.com/ |grep -ohiE '[0-9]{1,3}(\.[0-9]{1,4}){1,4}' | sort | uniq)
+for n in $(seq 0 ${#CHROME_VERSION})
+do
+  MATCH_VERSION=$(grep -om 1 ${CHROME_VERSION::-n} <<< $VERSIONS | uniq)
+  if [ -n "$MATCH_VERSION" ]; then
+    break
+  fi
+done
 
-MATCH_VERSION=""
 if [ -n "$MATCH_VERSION" ]; then
   topic "Match version found $MATCH_VERSION"
   VERSION=$MATCH_VERSION
