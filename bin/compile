@@ -36,12 +36,10 @@ topic "Finding match driver"
 MATCH_VERSION=""
 for n in $(seq ${#CHROME_VERSION} -1 1)
 do
-  VER=${CHROME_VERSION::n}
-  topic "ver $VER"
-  MATCH_VERSION=$(grep -o $VER <<< $VERSIONS)
+  MATCH_VERSION=$(grep -oF ${CHROME_VERSION::n} <<< $VERSIONS)
   topic "MATCH_VERSION: $MATCH_VERSION"
-  if [ -z "$MATCH_VERSION" ]; then
-    topic "Empty"
+  if [ -n "$MATCH_VERSION" ]; then
+    break
   fi
 done
 
